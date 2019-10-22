@@ -6,4 +6,5 @@
 
 
     <color name="colorLevel">#154734</color>
+    <color name="emptyColorLevel">#F8D8B7</color>
 </resources>

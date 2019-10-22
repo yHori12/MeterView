@@ -101,6 +101,7 @@ class MeterView @JvmOverloads constructor(
             val top = i * (mLevelButtonHeight + mLevelButtonMargin) + mPaintStroke
             val rect = RectF(left, top, left + width, top + mLevelButtonHeight)
 
+            //level indexは1~
             mExtractLevels.add(ExtractLevel(i, rect))
         }
         mExtractLevels.reverse()
@@ -117,7 +118,7 @@ class MeterView @JvmOverloads constructor(
             paint.style = Paint.Style.FILL
             paint.color = ContextCompat.getColor(
                 context,
-                R.color.colorLevel
+                if (isLevelSelected(it.levelIndex)) R.color.colorLevel else R.color.emptyColorLevel
             )
             canvas.drawRoundRect(
                 it.position,
@@ -126,6 +127,10 @@ class MeterView @JvmOverloads constructor(
                 paint
             )
         }
+    }
+
+    private fun isLevelSelected(levelIndex: Int): Boolean {
+        return mCurrentLevel <= levelIndex
     }
 
     @SuppressLint("ClickableViewAccessibility")
